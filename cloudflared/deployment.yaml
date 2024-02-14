@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared
+spec:
+  replicas: 2
+  template:
+    spec:
+      containers:
+        - name: cloudflared
+          image: cloudflare/cloudflared
+          args: ["tunnel", "--metrics", "0.0.0.0:53333", "run"]
+          envFrom:
+            - secretRef:
+                name: cloudflare-tunnel-secret
+          livenessProbe:
+            httpGet:
+              # /ready endpoint returns 200 if connected to the edge
+              path: /ready
+              port: 53333
+            failureThreshold: 1
+            initialDelaySeconds: 10
+            periodSeconds: 10
