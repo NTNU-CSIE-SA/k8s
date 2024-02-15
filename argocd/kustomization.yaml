@@ -5,6 +5,7 @@ resources:
 patches:
   - path: argocd-cmd-params-cm.yaml
   - path: argocd-cm.yaml
+  - path: argocd-rbac-cm.yaml
   - path: argocd-repo-server-ksops.yaml
   - path: argocd-repo-server-keys.yaml
 generators:

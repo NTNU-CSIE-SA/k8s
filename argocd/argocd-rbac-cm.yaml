@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+data:
+  policy.csv: |
+    # Grant all maintainers admin privileges
+    g, NTNU-CSIE-SA:maintainers, role:admin
+
+  policy.default: role:readonly
