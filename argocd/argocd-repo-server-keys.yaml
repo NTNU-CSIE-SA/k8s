@@ -10,7 +10,7 @@ spec:
           emptyDir: {}
         - name: deploy-key
           secret:
-            secretName: deploy-key
+            secretName: argocd-secret
       initContainers:
         - name: import-gpg-key
           image: argoproj/argocd
