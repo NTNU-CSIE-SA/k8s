@@ -3,6 +3,7 @@ kind: Kustomization
 commonLabels:
   app: cloudflared
 resources:
+  - namespace.yaml
   - deployment.yaml
 generators:
   - ./secret-generator.yaml
