@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
+  url: https://sa-k8s.csie.cool/argocd
   kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
   dex.config: |
     connectors:
