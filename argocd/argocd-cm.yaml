@@ -7,3 +7,16 @@ metadata:
     app.kubernetes.io/part-of: argocd
 data:
   kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
+  dex.config: |
+    connectors:
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: $dex.github.clientID
+          clientSecret: $dex.github.clientSecret
+          redirectURL: $dex.github.redirectURL
+          orgs:
+          - name: $dex.github.org
+            teams:
+            - $dex.github.team
