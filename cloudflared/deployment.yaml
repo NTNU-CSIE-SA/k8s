@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: cloudflared
 spec:
+  selector:
+    matchLabels:
+      app: cloudflared
   replicas: 2
   template:
     spec:
@@ -21,3 +24,10 @@ spec:
             failureThreshold: 1
             initialDelaySeconds: 10
             periodSeconds: 10
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "2048Mi"
+              cpu: "2000m"

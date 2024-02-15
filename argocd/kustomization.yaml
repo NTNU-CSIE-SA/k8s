@@ -6,8 +6,6 @@ patches:
   - path: argocd-cmd-params-cm.yaml
   - path: argocd-cm.yaml
   - path: argocd-repo-server-ksops.yaml
-secretGenerator:
-  - name: argocd-secret
-    behavior: merge
-    envs:
-      - .env
+  - path: argocd-repo-server-keys.yaml
+generators:
+  - ./secret-generator.yaml

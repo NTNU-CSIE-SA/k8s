@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-repo-server
+spec:
+  template:
+    spec:
+      volumes:
+        - name: gpg-home
+          emptyDir: {}
+        - name: deploy-key
+          secret:
+            secretName: deploy-key
+      initContainers:
+        - name: import-gpg-key
+          image: argoproj/argocd:v2.10.0
+          command: ["gpg", "--import", "/deploy-key/deploy-key-private"]
+          env:
+            - name: GNUPGHOME
+              value: /gpg-home/.gnupg
+          volumeMounts:
+            - mountPath: /deploy-key
+              name: deploy-key
+              readOnly: true
+            - mountPath: /gpg-home
+              name: gpg-home
+      containers:
+        - name: argocd-repo-server
+          env:
+            - name: GNUPGHOME
+              value: /home/argocd/.gnupg
+          volumeMounts:
+            - mountPath: /home/argocd/.gnupg
+              name: gpg-home
+              subPath: .gnupg

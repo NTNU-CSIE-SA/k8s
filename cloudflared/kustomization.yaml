@@ -4,7 +4,5 @@ commonLabels:
   app: cloudflared
 resources:
   - deployment.yaml
-secretGenerator:
-  - name: cloudflare-tunnel-secret
-    envs:
-      - .env
+generators:
+  - ./secret-generator.yaml
