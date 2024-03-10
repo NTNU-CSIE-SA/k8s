@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: convease
 resources:
   - ./namespace.yaml
-  - https://raw.githubusercontent.com/JacobLinCool/ConvEase/main/deployment/kubernetes/bot.yml
-  - https://raw.githubusercontent.com/JacobLinCool/ConvEase/main/deployment/kubernetes/chromium.yml
+  - ./bot.yml
+  - ./chromium.yml
 generators:
   - ./secret-generator.yaml
